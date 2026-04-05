@@ -1,5 +1,9 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import ProductCard from "./ProductCard";
 import { useAnimation } from "@/contexts/AnimationContext";
+
+// ------------------ PRODUCT DATA ------------------
 
 import tshirtTape from "@/assets/products/tshirt-tape.jpg";
 import skinnyJeans from "@/assets/products/skinny-jeans.jpg";
@@ -10,42 +14,116 @@ import courageGraphic from "@/assets/products/courage-graphic.jpg";
 import bermudaShorts from "@/assets/products/bermuda-shorts.jpg";
 import fadedJeans from "@/assets/products/faded-jeans.jpg";
 
-const newArrivals = [
+export const newArrivals = [
   { image: tshirtTape, name: "T-shirt with Tape Details", rating: 4.5, price: 120 },
   { image: skinnyJeans, name: "Skinny Fit Jeans", rating: 3.5, price: 240, originalPrice: 260, discount: "-20%" },
   { image: checkeredShirt, name: "Checkered Shirt", rating: 4.5, price: 180 },
   { image: sleeveStriped, name: "Sleeve Striped T-shirt", rating: 4.5, price: 130, originalPrice: 160, discount: "-30%" },
+
+  { image: verticalStriped, name: "Casual Vertical Shirt", rating: 4.2, price: 150 },
+  { image: courageGraphic, name: "Minimal Graphic Tee", rating: 4.8, price: 170 },
+  { image: bermudaShorts, name: "Summer Bermuda Shorts", rating: 3.9, price: 90 },
+  { image: fadedJeans, name: "Slim Faded Jeans", rating: 4.4, price: 220 },
 ];
 
-const topSelling = [
+export const topSelling = [
   { image: verticalStriped, name: "Vertical Striped Shirt", rating: 5, price: 212, originalPrice: 232, discount: "-20%" },
   { image: courageGraphic, name: "Courage Graphic T-shirt", rating: 4, price: 145 },
   { image: bermudaShorts, name: "Loose Fit Bermuda Shorts", rating: 3, price: 80 },
   { image: fadedJeans, name: "Faded Skinny Jeans", rating: 4.5, price: 210 },
+
+  { image: tshirtTape, name: "Tape Detail Tee Premium", rating: 4.7, price: 140 },
+  { image: skinnyJeans, name: "Stretch Skinny Jeans", rating: 4.3, price: 260 },
+  { image: checkeredShirt, name: "Classic Checkered Shirt", rating: 4.6, price: 190 },
+  { image: sleeveStriped, name: "Striped Sleeve Tee", rating: 4.1, price: 135 },
 ];
 
-const ProductSection = ({ title, products }: { title: string; products: typeof newArrivals }) => {
+// ------------------ PRODUCT SECTION COMPONENT ------------------
+
+const INITIAL_VISIBLE = 4;
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 20 },
+};
+
+const ProductSection = ({
+  title,
+  products,
+}: {
+  title: string;
+  products: typeof newArrivals;
+}) => {
   const { isPremium } = useAnimation();
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+
+  const handleViewMore = () => setVisibleCount((prev) => prev + 4);
+  const handleShowLess = () => setVisibleCount(INITIAL_VISIBLE);
+
+  const visibleProducts = products.slice(0, visibleCount);
+
   return (
     <section className="container mx-auto py-12 md:py-16 px-4">
-      <h2 className={`font-integral text-3xl md:text-5xl font-extrabold text-center mb-10 ${isPremium ? "animate-fade-in" : ""}`}>
+      <h2
+        className={`font-integral text-3xl md:text-5xl font-extrabold text-center mb-10 ${
+          isPremium ? "animate-fade-in" : ""
+        }`}
+      >
         {title}
       </h2>
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-        {products.map((p, i) => (
-          <div key={i} className={isPremium ? "animate-fade-in-up" : ""} style={isPremium ? { animationDelay: `${i * 100}ms` } : undefined}>
-            <ProductCard {...p} />
-          </div>
-        ))}
+        {isPremium ? (
+          <AnimatePresence>
+            {visibleProducts.map((product, i) => (
+              <motion.div
+                key={product.name + i}
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <ProductCard {...product} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        ) : (
+          // Standard mode: just render without animation
+          visibleProducts.map((product, i) => (
+            <div key={product.name + i}>
+              <ProductCard {...product} />
+            </div>
+          ))
+        )}
       </div>
-      <div className="text-center mt-8">
-        <button className="border border-border rounded-lg px-12 py-3 text-sm font-medium">
-          View All
-        </button>
+
+      <div className="text-center mt-8 flex justify-center gap-4">
+        {visibleCount < products.length && (
+          <button
+            onClick={handleViewMore}
+            className="border border-border rounded-lg px-8 py-3 text-sm font-medium hover:bg-black hover:text-white transition"
+          >
+            View More
+          </button>
+        )}
+        {visibleCount > INITIAL_VISIBLE && (
+          <button
+            onClick={handleShowLess}
+            className="border border-border rounded-lg px-8 py-3 text-sm font-medium hover:bg-black hover:text-white transition"
+          >
+            Show Less
+          </button>
+        )}
       </div>
     </section>
   );
 };
 
+// ------------------ EXPORTS ------------------
+
 export const NewArrivals = () => <ProductSection title="NEW ARRIVALS" products={newArrivals} />;
 export const TopSelling = () => <ProductSection title="TOP SELLING" products={topSelling} />;
+
+export default ProductSection;

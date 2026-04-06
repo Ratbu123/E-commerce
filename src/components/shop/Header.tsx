@@ -9,7 +9,11 @@ const Header = () => {
       </div>
       <nav className="container mx-auto flex items-center justify-between py-5 px-4">
         <div className="flex items-center gap-6">
-          <h1 className="font-integral text-2xl md:text-[32px] font-extrabold tracking-tight">SHOP.CO</h1>
+          {/* Gradient Logo */}
+          <h1 className="font-integral text-2xl md:text-[32px] font-extrabold tracking-tight bg-gradient-to-r from-[#4F46FF] via-[#6366F1] to-[#818CF8] bg-clip-text text-transparent">
+            SHOP.CO
+          </h1>
+
           <div className="hidden md:flex items-center gap-6 text-sm font-satoshi">
             <a href="#" className="flex items-center gap-1">Shop <span className="text-xs">▾</span></a>
             <a href="#">On Sale</a>
@@ -17,6 +21,7 @@ const Header = () => {
             <a href="#">Brands</a>
           </div>
         </div>
+
         <div className="hidden lg:flex items-center flex-1 max-w-lg mx-8">
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -27,6 +32,7 @@ const Header = () => {
             />
           </div>
         </div>
+
         <div className="flex items-center gap-4">
           <Search className="w-5 h-5 lg:hidden" />
           <ShoppingCart className="w-5 h-5" />

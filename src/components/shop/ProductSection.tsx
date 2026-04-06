@@ -19,7 +19,6 @@ export const newArrivals = [
   { image: skinnyJeans, name: "Skinny Fit Jeans", rating: 3.5, price: 240, originalPrice: 260, discount: "-20%" },
   { image: checkeredShirt, name: "Checkered Shirt", rating: 4.5, price: 180 },
   { image: sleeveStriped, name: "Sleeve Striped T-shirt", rating: 4.5, price: 130, originalPrice: 160, discount: "-30%" },
-
   { image: verticalStriped, name: "Casual Vertical Shirt", rating: 4.2, price: 150 },
   { image: courageGraphic, name: "Minimal Graphic Tee", rating: 4.8, price: 170 },
   { image: bermudaShorts, name: "Summer Bermuda Shorts", rating: 3.9, price: 90 },
@@ -31,7 +30,6 @@ export const topSelling = [
   { image: courageGraphic, name: "Courage Graphic T-shirt", rating: 4, price: 145 },
   { image: bermudaShorts, name: "Loose Fit Bermuda Shorts", rating: 3, price: 80 },
   { image: fadedJeans, name: "Faded Skinny Jeans", rating: 4.5, price: 210 },
-
   { image: tshirtTape, name: "Tape Detail Tee Premium", rating: 4.7, price: 140 },
   { image: skinnyJeans, name: "Stretch Skinny Jeans", rating: 4.3, price: 260 },
   { image: checkeredShirt, name: "Classic Checkered Shirt", rating: 4.6, price: 190 },
@@ -65,14 +63,16 @@ const ProductSection = ({
 
   return (
     <section className="container mx-auto py-12 md:py-16 px-4">
+      {/* Gradient Heading */}
       <h2
-        className={`font-integral text-3xl md:text-5xl font-extrabold text-center mb-10 ${
+        className={`font-integral text-3xl md:text-5xl font-extrabold text-center mb-10 bg-gradient-to-r from-[#4F46FF] via-[#6366F1] to-[#818CF8] bg-clip-text text-transparent ${
           isPremium ? "animate-fade-in" : ""
         }`}
       >
         {title}
       </h2>
 
+      {/* Products Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
         {isPremium ? (
           <AnimatePresence>
@@ -90,7 +90,6 @@ const ProductSection = ({
             ))}
           </AnimatePresence>
         ) : (
-          // Standard mode: just render without animation
           visibleProducts.map((product, i) => (
             <div key={product.name + i}>
               <ProductCard {...product} />
@@ -99,11 +98,15 @@ const ProductSection = ({
         )}
       </div>
 
+      {/* View More / Show Less Buttons */}
       <div className="text-center mt-8 flex justify-center gap-4">
         {visibleCount < products.length && (
           <button
             onClick={handleViewMore}
-            className="border border-border rounded-lg px-8 py-3 text-sm font-medium hover:bg-black hover:text-white transition"
+            className="border border-indigo-500/50 rounded-lg px-8 py-3 text-sm font-medium
+                       bg-transparent text-black
+                       transition-all duration-500 ease-in-out
+                       hover:text-white hover:bg-gradient-to-r hover:from-[#4F46FF] hover:via-[#6366F1] hover:to-[#818CF8]"
           >
             View More
           </button>
@@ -111,7 +114,10 @@ const ProductSection = ({
         {visibleCount > INITIAL_VISIBLE && (
           <button
             onClick={handleShowLess}
-            className="border border-border rounded-lg px-8 py-3 text-sm font-medium hover:bg-black hover:text-white transition"
+            className="border border-indigo-500/50 rounded-lg px-8 py-3 text-sm font-medium
+                       bg-transparent text-black
+                       transition-all duration-500 ease-in-out
+                       hover:text-white hover:bg-gradient-to-r hover:from-[#4F46FF] hover:via-[#6366F1] hover:to-[#818CF8]"
           >
             Show Less
           </button>

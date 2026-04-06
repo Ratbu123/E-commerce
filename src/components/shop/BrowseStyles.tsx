@@ -13,23 +13,42 @@ const styles = [
 
 const BrowseStyles = () => {
   const { isPremium } = useAnimation();
+
   return (
     <section className="container mx-auto px-4 py-12 md:py-16">
       <div className="bg-shop-hero rounded-[40px] px-6 md:px-16 py-10 md:py-16">
-        <h2 className="font-integral text-3xl md:text-5xl font-extrabold text-center mb-10">
+        {/* Gradient Heading */}
+        <h2
+          className={`font-integral text-3xl md:text-5xl font-extrabold text-center mb-10 bg-gradient-to-r from-[#4F46FF] via-[#6366F1] to-[#818CF8] bg-clip-text text-transparent ${
+            isPremium ? "animate-fade-in" : ""
+          }`}
+        >
           BROWSE BY DRESS STYLE
         </h2>
+
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
           {styles.map((style, i) => (
             <div
               key={style.name}
               className={`${style.className} relative rounded-2xl overflow-hidden h-48 md:h-72 ${
-                isPremium ? "transition-transform duration-300 hover:scale-[1.02] animate-scale-in" : ""
+                isPremium
+                  ? "transition-transform duration-300 hover:scale-[1.02] animate-scale-in"
+                  : ""
               }`}
               style={isPremium ? { animationDelay: `${i * 100}ms` } : undefined}
             >
-              <img src={style.image} alt={style.name} className="w-full h-full object-cover" loading="lazy" width={512} height={512} />
-              <span className="absolute top-5 left-5 font-satoshi font-bold text-xl md:text-2xl">
+              {/* Image */}
+              <img
+                src={style.image}
+                alt={style.name}
+                className="w-full h-full object-cover"
+                loading="lazy"
+                width={512}
+                height={512}
+              />
+
+              {/* Text on image */}
+              <span className="absolute top-5 left-5 font-satoshi font-bold text-xl md:text-2xl text-white mix-blend-difference">
                 {style.name}
               </span>
             </div>

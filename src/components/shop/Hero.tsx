@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 const Hero = () => {
   const { isPremium } = useAnimation();
 
-  // ------------------ Number Count Up ------------------
   const [brandsCount, setBrandsCount] = useState(0);
   const [productsCount, setProductsCount] = useState(0);
   const [customersCount, setCustomersCount] = useState(0);
@@ -35,32 +34,33 @@ const Hero = () => {
     <section className="bg-shop-hero relative w-full overflow-hidden">
       <div className="container mx-auto flex flex-col lg:flex-row items-center px-4 relative z-10">
 
-        {/* Left Text Content */}
+        {/* LEFT */}
         <div className={`flex-1 py-12 lg:py-24 ${isPremium ? "animate-fade-in-up" : ""}`}>
-          <h2 className="font-integral text-4xl md:text-5xl lg:text-[64px] font-extrabold leading-[1.1] tracking-tight">
+
+          {/* ✅ GRADIENT TITLE ONLY */}
+          <h2 className="font-integral text-4xl md:text-5xl lg:text-[64px] font-extrabold leading-[1.1] tracking-tight bg-gradient-to-r from-[#4F46FF] via-[#6366F1] to-[#A5B4FC] bg-clip-text text-transparent">
             FIND CLOTHES<br />THAT MATCHES<br />YOUR STYLE
           </h2>
 
           <p className="mt-5 font-satoshi text-muted-foreground text-sm md:text-base max-w-lg">
-            Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.
+            Browse through our diverse range of meticulously crafted garments,
+            designed to bring out your individuality and cater to your sense of style.
           </p>
 
-          {/* Premium Button with hover in animation */}
+          {/* BUTTON */}
           {isPremium ? (
             <motion.button
               className="mt-7 font-satoshi rounded-lg px-14 py-3.5 text-sm font-medium bg-primary text-primary-foreground relative overflow-hidden"
-              whileHover={{
-                scale: 1.05,
-              }}
+              whileHover={{ scale: 1.05 }}
             >
-              {/* Gradient overlay that fades in */}
               <motion.div
                 className="absolute inset-0 rounded-lg pointer-events-none"
                 initial={{ opacity: 0 }}
                 whileHover={{ opacity: 0.7 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.5 }}
                 style={{
-                  background: "linear-gradient(to right, rgba(0,0,0,0.7), rgba(255,255,255,0.7))",
+                  background:
+                    "linear-gradient(to right, rgba(0,0,0,0.7), rgba(255,255,255,0.7))",
                 }}
               />
               <span className="relative z-10">Shop Now</span>
@@ -71,7 +71,7 @@ const Hero = () => {
             </button>
           )}
 
-          {/* Stats */}
+          {/* STATS */}
           <div className="flex items-center gap-8 mt-8 flex-wrap font-satoshi">
             <div>
               <p className="text-2xl md:text-[40px] font-bold">
@@ -100,14 +100,12 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right Hero Image */}
+        {/* RIGHT IMAGE */}
         <div className="flex-1 flex justify-end relative z-0">
           <img
             src={heroImage}
             alt="Fashion models"
-            className="w-full max-w-lg object-contain translate-y-16 scale-150 md:scale-150"
-            width={1024}
-            height={1024}
+            className="w-full max-w-lg object-contain translate-y-16 scale-150"
           />
         </div>
       </div>

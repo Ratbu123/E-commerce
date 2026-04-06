@@ -5,35 +5,30 @@
   font-family: "Integral CF";
   src: url("/fonts/IntegralCF-ExtraBold.woff2") format("woff2");
   font-weight: 800;
-  font-style: normal;
 }
 
 @font-face {
   font-family: "Integral CF";
   src: url("/fonts/IntegralCF-Bold.woff2") format("woff2");
   font-weight: 700;
-  font-style: normal;
 }
 
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Regular.woff2") format("woff2");
   font-weight: 400;
-  font-style: normal;
 }
 
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Medium.woff2") format("woff2");
   font-weight: 500;
-  font-style: normal;
 }
 
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Bold.woff2") format("woff2");
   font-weight: 700;
-  font-style: normal;
 }
 
 /* === TAILWIND === */
@@ -44,40 +39,84 @@
 /* === THEME === */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --background: 244 100% 99%;
+    --foreground: 0 0% 0%; /* ← BLACK TEXT */
+
     --card: 0 0% 100%;
     --card-foreground: 0 0% 0%;
+
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
-    --primary: 0 0% 0%;
+
+    --primary: 244 100% 64%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 96%;
+
+    --secondary: 244 100% 96%;
     --secondary-foreground: 0 0% 0%;
-    --muted: 240 5% 96%;
+
+    --muted: 244 40% 96%;
     --muted-foreground: 0 0% 40%;
-    --accent: 240 5% 96%;
+
+    --accent: 244 100% 90%;
     --accent-foreground: 0 0% 0%;
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 0%;
+
+    --border: 240 10% 90%;
+    --input: 240 10% 90%;
+    --ring: 244 100% 64%;
+
     --radius: 62px;
 
-    --shop-hero-bg: 240 5% 96%;
+    /* GRADIENTS */
+    --gradient-primary: linear-gradient(135deg, #4f46ff, #7c7cff);
+    --gradient-soft: linear-gradient(135deg, #eef0ff, #ffffff);
+
+    /* SHOP */
+    --shop-hero-bg: 244 100% 96%;
     --shop-star: 47 100% 50%;
     --shop-sale: 0 84% 60%;
-    --shop-newsletter-bg: 0 0% 0%;
+    --shop-newsletter-bg: 244 100% 64%;
     --shop-newsletter-foreground: 0 0% 100%;
   }
 }
 
+/* === GLOBAL === */
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground font-satoshi;
+    @apply font-satoshi;
+    background: var(--gradient-soft);
+    color: black;
+  }
+}
+
+/* === COMPONENTS === */
+@layer components {
+  .btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    @apply px-6 py-3 rounded-full font-medium shadow-md transition-all;
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  .card {
+    background: white;
+    @apply rounded-2xl p-6 shadow-md;
+    border: 1px solid hsl(var(--border));
+  }
+
+  .input {
+    @apply px-4 py-2 rounded-full outline-none;
+    border: 1px solid hsl(var(--input));
+    background: white;
   }
 }

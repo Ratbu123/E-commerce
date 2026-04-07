@@ -3,7 +3,7 @@ import { Mail } from "lucide-react";
 const Newsletter = () => {
   return (
     <section className="container mx-auto px-4">
-      <div className="bg-gradient-to-r from-[#4F46FF] via-[#6366F1] to-[#818CF8] rounded-2xl px-6 md:px-16 py-8 md:py-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-300 hover:shadow-xl">
+      <div className="newsletter-bg rounded-2xl px-6 md:px-16 py-8 md:py-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-300 hover:shadow-xl">
         
         <h2 className="font-integral text-2xl md:text-[40px] font-extrabold text-white leading-tight max-w-md">
           STAY UPTO DATE ABOUT OUR LATEST OFFERS
@@ -17,7 +17,7 @@ const Newsletter = () => {
             <input
               type="email"
               placeholder="Enter your email address"
-              className="w-full rounded-lg pl-10 pr-4 py-3 text-sm bg-white outline-none transition-all focus:ring-2 focus:ring-[#4F46FF]/40"
+              className="w-full rounded-lg pl-10 pr-4 py-3 text-sm bg-white outline-none transition-all focus:ring-2 focus:ring-primary/40"
             />
           </div>
 

@@ -1,30 +1,24 @@
-/* REMOVE Google Fonts (they don’t work for these fonts) */
-
 /* === FONTS === */
 @font-face {
   font-family: "Integral CF";
   src: url("/fonts/IntegralCF-ExtraBold.woff2") format("woff2");
   font-weight: 800;
 }
-
 @font-face {
   font-family: "Integral CF";
   src: url("/fonts/IntegralCF-Bold.woff2") format("woff2");
   font-weight: 700;
 }
-
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Regular.woff2") format("woff2");
   font-weight: 400;
 }
-
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Medium.woff2") format("woff2");
   font-weight: 500;
 }
-
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Bold.woff2") format("woff2");
@@ -36,17 +30,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* === THEME === */
+/* === ORIGINAL THEME VARIABLES (Premium) === */
 @layer base {
   :root {
     --background: 244 100% 99%;
-    --foreground: 0 0% 0%; /* ← BLACK TEXT */
+    --foreground: 0 0% 0%;
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 0%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
 
     --primary: 244 100% 64%;
     --primary-foreground: 0 0% 100%;
@@ -73,20 +64,27 @@
     --gradient-primary: linear-gradient(135deg, #4f46ff, #7c7cff);
     --gradient-soft: linear-gradient(135deg, #eef0ff, #ffffff);
 
+    /* HERO TITLE */
+    --hero-title-gradient: linear-gradient(to right, #4f46ff, #6366f1, #a5b4fc);
+
+    /* BUTTON SHINE */
+    --btn-shine-gradient: linear-gradient(to right, rgba(0,0,0,0.7), rgba(255,255,255,0.7));
+
     /* SHOP */
     --shop-hero-bg: 244 100% 96%;
     --shop-star: 47 100% 50%;
     --shop-sale: 0 84% 60%;
     --shop-newsletter-bg: 244 100% 64%;
     --shop-newsletter-foreground: 0 0% 100%;
+
+    /* NEWSLETTER */
+    --newsletter-gradient: linear-gradient(to right, #4f46ff, #6366f1, #818cf8);
   }
 }
 
 /* === GLOBAL === */
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
 
   body {
     @apply font-satoshi;
@@ -95,18 +93,14 @@
   }
 }
 
-/* === COMPONENTS === */
+/* === COMPONENTS (Premium design) === */
 @layer components {
   .btn-primary {
     background: var(--gradient-primary);
     color: white;
-    @apply px-6 py-3 rounded-full font-medium shadow-md transition-all;
+    @apply px-14 py-3.5 text-sm font-medium rounded-full shadow-md transition-all;
   }
-
-  .btn-primary:hover {
-    filter: brightness(1.1);
-    transform: translateY(-1px);
-  }
+  .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.1); }
 
   .card {
     background: white;
@@ -118,5 +112,98 @@
     @apply px-4 py-2 rounded-full outline-none;
     border: 1px solid hsl(var(--input));
     background: white;
+  }
+
+  .hero-title {
+    background: var(--hero-title-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-shine { background: var(--btn-shine-gradient); }
+
+  .newsletter-bg { background: var(--newsletter-gradient); }
+
+  /* === STANDARD MODE SIMPLE === */
+  body.standard-mode {
+    background: #ffffff;
+    color: #111;
+    font-family: 'Satoshi', sans-serif;
+  }
+
+  body.standard-mode * {
+    box-shadow: none !important;
+    border-radius: 0.25rem !important;
+    border: none !important;
+    background: #ffffff !important;
+    color: #111 !important;
+  }
+
+  /* Buttons */
+  body.standard-mode .btn-primary,
+  body.standard-mode .btn-shine {
+    background: #4f46ff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    box-shadow: none;
+    font-weight: 500;
+  }
+
+  body.standard-mode .btn-primary:hover,
+  body.standard-mode .btn-shine:hover {
+    background: #6366f1;
+  }
+
+  /* Cards */
+  body.standard-mode .card {
+    padding: 1rem;
+    background: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: none;
+  }
+
+  /* Inputs */
+  body.standard-mode .input {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background: #f4f4f5;
+  }
+
+  /* Hero Title */
+  body.standard-mode .hero-title {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    color: #111;
+    font-weight: 700;
+  }
+
+  /* Newsletter */
+  body.standard-mode .newsletter-bg {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  /* Mode toggle */
+  body.standard-mode .mode-toggle {
+    background: #ffffff;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    color: #111;
+    box-shadow: none;
+  }
+
+  body.standard-mode .mode-toggle button {
+    background: #f4f4f5;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    color: #111;
+  }
+
+  body.standard-mode .mode-toggle button[aria-pressed="true"] {
+    background: #e0e0e0;
   }
 }

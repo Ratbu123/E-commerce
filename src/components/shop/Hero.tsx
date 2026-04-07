@@ -37,8 +37,8 @@ const Hero = () => {
         {/* LEFT */}
         <div className={`flex-1 py-12 lg:py-24 ${isPremium ? "animate-fade-in-up" : ""}`}>
 
-          {/* ✅ GRADIENT TITLE ONLY */}
-          <h2 className="font-integral text-4xl md:text-5xl lg:text-[64px] font-extrabold leading-[1.1] tracking-tight bg-gradient-to-r from-[#4F46FF] via-[#6366F1] to-[#A5B4FC] bg-clip-text text-transparent">
+          {/* TITLE */}
+          <h2 className="font-integral text-4xl md:text-5xl lg:text-[64px] font-extrabold leading-[1.1] tracking-tight hero-title">
             FIND CLOTHES<br />THAT MATCHES<br />YOUR STYLE
           </h2>
 
@@ -50,23 +50,19 @@ const Hero = () => {
           {/* BUTTON */}
           {isPremium ? (
             <motion.button
-              className="mt-7 font-satoshi rounded-lg px-14 py-3.5 text-sm font-medium bg-primary text-primary-foreground relative overflow-hidden"
+              className="mt-7 font-satoshi btn-primary relative overflow-hidden"
               whileHover={{ scale: 1.05 }}
             >
               <motion.div
-                className="absolute inset-0 rounded-lg pointer-events-none"
+                className="absolute inset-0 rounded-full pointer-events-none btn-shine"
                 initial={{ opacity: 0 }}
                 whileHover={{ opacity: 0.7 }}
                 transition={{ duration: 0.5 }}
-                style={{
-                  background:
-                    "linear-gradient(to right, rgba(0,0,0,0.7), rgba(255,255,255,0.7))",
-                }}
               />
               <span className="relative z-10">Shop Now</span>
             </motion.button>
           ) : (
-            <button className="mt-7 font-satoshi bg-primary text-primary-foreground rounded-lg px-14 py-3.5 text-sm font-medium">
+            <button className="mt-7 font-satoshi btn-primary">
               Shop Now
             </button>
           )}

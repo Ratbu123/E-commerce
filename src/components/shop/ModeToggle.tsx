@@ -1,7 +1,18 @@
+import { useEffect } from "react";
 import { useAnimation } from "@/contexts/AnimationContext";
 
 const ModeToggle = () => {
   const { mode, setMode } = useAnimation();
+
+  // Apply the standard-mode class dynamically
+  useEffect(() => {
+    if (mode === "standard") {
+      document.body.classList.add("standard-mode");
+    } else {
+      document.body.classList.remove("standard-mode");
+    }
+  }, [mode]);
+
   return (
     <div className="fixed top-4 right-4 z-50 flex items-center gap-2 rounded-lg bg-primary px-4 py-2 shadow-lg">
       <button

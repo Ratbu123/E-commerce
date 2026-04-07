@@ -17,9 +17,9 @@ const BrowseStyles = () => {
   return (
     <section className="container mx-auto px-4 py-12 md:py-16">
       <div className="bg-shop-hero rounded-[40px] px-6 md:px-16 py-10 md:py-16">
-        {/* Gradient Heading */}
+        {/* ✅ NOW USES GLOBAL HERO TITLE */}
         <h2
-          className={`font-integral text-3xl md:text-5xl font-extrabold text-center mb-10 bg-gradient-to-r from-[#4F46FF] via-[#6366F1] to-[#818CF8] bg-clip-text text-transparent ${
+          className={`font-integral text-3xl md:text-5xl font-extrabold text-center mb-10 hero-title ${
             isPremium ? "animate-fade-in" : ""
           }`}
         >

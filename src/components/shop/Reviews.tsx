@@ -25,9 +25,9 @@ const Reviews = () => {
 
   return (
     <section className="container mx-auto px-4 py-12 md:py-16">
-      {/* Gradient Heading */}
+      {/* ✅ NOW USES GLOBAL HERO TITLE */}
       <h2
-        className={`font-integral text-3xl md:text-5xl font-extrabold mb-8 text-center bg-gradient-to-r from-[#4F46FF] via-[#6366F1] to-[#818CF8] bg-clip-text text-transparent ${
+        className={`font-integral text-3xl md:text-5xl font-extrabold mb-8 text-center hero-title ${
           isPremium ? "animate-fade-in" : ""
         }`}
       >
@@ -44,7 +44,7 @@ const Reviews = () => {
                 : ""
             }`}
             style={{
-              borderColor: "rgba(79, 70, 255, 0.5)", // low-opacity indigo border
+              borderColor: "rgba(79, 70, 255, 0.5)",
               animationDelay: isPremium ? `${i * 150}ms` : undefined,
             }}
           >

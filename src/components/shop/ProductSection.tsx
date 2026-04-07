@@ -63,9 +63,9 @@ const ProductSection = ({
 
   return (
     <section className="container mx-auto py-12 md:py-16 px-4">
-      {/* Gradient Heading */}
+      {/* ✅ Uses global hero-title style */}
       <h2
-        className={`font-integral text-3xl md:text-5xl font-extrabold text-center mb-10 bg-gradient-to-r from-[#4F46FF] via-[#6366F1] to-[#818CF8] bg-clip-text text-transparent ${
+        className={`font-integral text-3xl md:text-5xl font-extrabold text-center mb-10 hero-title ${
           isPremium ? "animate-fade-in" : ""
         }`}
       >
@@ -98,15 +98,12 @@ const ProductSection = ({
         )}
       </div>
 
-      {/* View More / Show Less Buttons */}
+      {/* Buttons using same style as Shop Now */}
       <div className="text-center mt-8 flex justify-center gap-4">
         {visibleCount < products.length && (
           <button
             onClick={handleViewMore}
-            className="border border-indigo-500/50 rounded-lg px-8 py-3 text-sm font-medium
-                       bg-transparent text-black
-                       transition-all duration-500 ease-in-out
-                       hover:text-white hover:bg-gradient-to-r hover:from-[#4F46FF] hover:via-[#6366F1] hover:to-[#818CF8]"
+            className="btn-primary"
           >
             View More
           </button>
@@ -114,10 +111,7 @@ const ProductSection = ({
         {visibleCount > INITIAL_VISIBLE && (
           <button
             onClick={handleShowLess}
-            className="border border-indigo-500/50 rounded-lg px-8 py-3 text-sm font-medium
-                       bg-transparent text-black
-                       transition-all duration-500 ease-in-out
-                       hover:text-white hover:bg-gradient-to-r hover:from-[#4F46FF] hover:via-[#6366F1] hover:to-[#818CF8]"
+            className="btn-primary"
           >
             Show Less
           </button>
